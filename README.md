@@ -4,6 +4,11 @@
 
 A QR code generator supporting rMQR
 
+## Online Demo Site
+
+You can try out libraries with the WASM version online.
+[Online Demo Site](https://nakanishi123.github.io/qrqrpar-js/)
+
 ## Example
 
 ### Normal Usage
@@ -75,7 +80,7 @@ fn main() {
 
 Generates this image:
 
-[<img src="https://github.com/Nakanishi123/qrqrpar/assets/45790603/6fae782a-27a3-4550-8c39-012216857bc2" width="250"/>](normal_qr.png)
+<img src="https://github.com/Nakanishi123/qrqrpar/assets/45790603/6fae782a-27a3-4550-8c39-012216857bc2" width="250"/>
 
 ## Derived from
 
