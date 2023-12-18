@@ -1235,23 +1235,6 @@ impl Canvas {
         }
     }
 
-    fn draw_remainder_bits<I>(&mut self, remainder_bits_num: i16, coords: &mut I)
-    where
-        I: Iterator<Item = (i16, i16)>,
-    {
-        let mut count = 0;
-        for (x, y) in coords {
-            if count == remainder_bits_num {
-                break;
-            }
-            let r = self.get_mut(x, y);
-            if *r == Module::Empty {
-                *r = Module::Unmasked(Color::Light);
-                count += 1;
-            }
-        }
-    }
-
     /// Draws the encoded data and error correction codes to the empty modules.
     pub fn draw_data(&mut self, data: &[u8], ec: &[u8]) {
         let is_half_codeword_at_end = matches!(
@@ -1262,16 +1245,8 @@ impl Canvas {
         let mut coords = DataModuleIter::new(self.version);
         self.draw_codewords(data, is_half_codeword_at_end, &mut coords);
         self.draw_codewords(ec, false, &mut coords);
-        if self.version.is_rmqr() {
-            let remainder_bits_num = REMAINDER_BITS[self.version.rmqr_index().unwrap()];
-            self.draw_remainder_bits(remainder_bits_num, &mut coords);
-        }
     }
 }
-
-static REMAINDER_BITS: [i16; 32] = [
-    0, 3, 5, 6, 1, 2, 3, 1, 4, 5, 2, 1, 0, 2, 7, 6, 4, 1, 6, 4, 3, 0, 1, 4, 6, 7, 2, 1, 2, 0, 3, 4,
-];
 
 #[cfg(test)]
 mod draw_codewords_test {
