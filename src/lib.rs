@@ -264,7 +264,7 @@ impl QrCode {
 
 impl QrCode {
     /// Return `viewbox_width`, `viewbox_height`, `image_width`, `image_height`
-    fn iamge_sizes(&self, style: &QrStyle) -> (f64, f64, u32, u32) {
+    pub fn image_sizes(&self, style: &QrStyle) -> (f64, f64, u32, u32) {
         let quiet = style.quiet_zone;
         let vb_width = self.width as f64 + quiet * 2.0;
         let vb_height = self.height as f64 + quiet * 2.0;
@@ -301,13 +301,13 @@ impl QrCode {
         let color = &style.color;
         let background_color = &style.background_color;
         let quiet = style.quiet_zone;
-        let (vb_width, vb_height, iamge_width, iamge_height) = self.iamge_sizes(style);
+        let (vb_width, vb_height, image_width, image_height) = self.image_sizes(style);
         let path = format!(
             r#"<path fill="{color}" transform="translate({quiet},{quiet})" fill-rule="evenodd" d="{path_string}"/>"#,
         );
         format!(
             r#"<?xml version="1.0" encoding="UTF-8"?>
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="{iamge_width}" height="{iamge_height}" viewBox="0 0 {vb_width} {vb_height}">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="{image_width}" height="{image_height}" viewBox="0 0 {vb_width} {vb_height}">
             <rect x="0" y="0" width="{vb_width}" height="{vb_height}" fill="{background_color}"/>
             {path}
             </svg>"#,
@@ -330,7 +330,7 @@ impl QrCode {
         &self,
         style: &QrStyle,
     ) -> Result<resvg::tiny_skia::Pixmap, Box<dyn std::error::Error>> {
-        let (_, _, width, height) = self.iamge_sizes(style);
+        let (_, _, width, height) = self.image_sizes(style);
         let svg_string = self.to_svg(style);
         let opt = resvg::usvg::Options::default();
         let tree = &resvg::usvg::TreeParsing::from_str(&svg_string, &opt)?;
