@@ -351,6 +351,12 @@ impl QrCode {
         pixmap.save_png(path)?;
         Ok(())
     }
+
+    /// Encodes QR into a PNG data.
+    pub fn to_png(&self, style: &QrStyle) -> Result<Vec<u8>, Box<dyn std::error::Error>> {
+        let pixmap = self.to_pixmap(style)?;
+        Ok(pixmap.encode_png()?)
+    }
 }
 
 #[cfg(test)]
