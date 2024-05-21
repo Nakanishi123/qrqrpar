@@ -7,7 +7,7 @@ A QR code generator supporting rMQR
 ## Online Demo Site
 
 You can try out libraries with the WASM version online.
-[Online Demo Site](https://nakanishi123.github.io/qrqrpar-js/)
+[Online Demo Site](https://qrqrpardemo.nakanishi.dev)
 
 ## Example
 
