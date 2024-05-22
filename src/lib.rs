@@ -269,7 +269,7 @@ impl QrCode {
         let vb_width = self.width as f64 + quiet * 2.0;
         let vb_height = self.height as f64 + quiet * 2.0;
         let width = style.width;
-        let height = (width as f64 / (vb_width / vb_height)) as u32;
+        let height = (width as f64 * vb_height / vb_width).round() as u32;
         (vb_width, vb_height, width, height)
     }
 
