@@ -771,7 +771,7 @@ pub fn encode_auto_rmqr(data: &[u8], ec_level: EcLevel, strategy: RmqrStrategy) 
     }
 
     let min_version = match strategy {
-        RmqrStrategy::Width => possible_versions.get(0), // possible_versions is already sorted by width
+        RmqrStrategy::Width => possible_versions.first(), // possible_versions is already sorted by width
         RmqrStrategy::Height => possible_versions.iter().min_by_key(|v| v.height()),
         RmqrStrategy::Area => possible_versions.iter().min_by_key(|v| v.area()),
     };
