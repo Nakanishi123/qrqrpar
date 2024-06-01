@@ -1239,7 +1239,9 @@ impl Canvas {
     pub fn draw_data(&mut self, data: &[u8], ec: &[u8]) {
         let is_half_codeword_at_end = matches!(
             (self.version, self.ec_level),
-            (Version::Micro(1), EcLevel::L) | (Version::Micro(3), EcLevel::M)
+            (Version::Micro(1), EcLevel::L)
+                | (Version::Micro(3), EcLevel::L)
+                | (Version::Micro(3), EcLevel::M)
         );
 
         let mut coords = DataModuleIter::new(self.version);
