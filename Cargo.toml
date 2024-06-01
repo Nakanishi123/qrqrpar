@@ -1,6 +1,6 @@
 [package]
 name = "qrqrpar"
-version = "0.1.5"
+version = "0.1.6"
 edition = "2021"
 description = "A QR code generator supporting rMQR"
 readme = "README.md"

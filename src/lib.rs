@@ -380,4 +380,13 @@ mod image_test {
         let style = QrStyle::default();
         code.save_svg(path, &style).unwrap();
     }
+    #[test]
+    fn test_save_svg2() {
+        let test_dir = TempDir::new("__test__").unwrap();
+        let path = test_dir.path().join("micro_qr_m3_l.svg");
+        let code =
+            QrCode::with_version("11111111111111111111", Version::Micro(3), EcLevel::L).unwrap();
+        let style = QrStyle::default();
+        code.save_svg(path, &style).unwrap();
+    }
 }
