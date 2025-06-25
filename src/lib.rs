@@ -15,15 +15,17 @@
 //! code.save_png("rmqr.png", &style).unwrap();
 //! ```
 
+use std::borrow::Cow;
+
+pub use crate::bits::RmqrStrategy;
+pub use crate::types::{Color, EcLevel, QrResult, Version};
+
 pub mod bits;
 pub mod canvas;
 pub mod coding;
 pub mod ec;
 mod render;
 pub mod types;
-
-pub use crate::bits::RmqrStrategy;
-pub use crate::types::{Color, EcLevel, QrResult, Version};
 
 #[derive(Debug, Copy, Clone)]
 pub enum QrShape {
