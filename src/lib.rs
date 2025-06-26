@@ -33,10 +33,10 @@ pub enum QrShape {
     Round,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct QrStyle {
-    pub color: String,
-    pub background_color: String,
+    pub color: Cow<'static, str>,
+    pub background_color: Cow<'static, str>,
     pub shape: QrShape,
     /// output image width. The height is automatically calculated.
     pub width: u32,
@@ -46,8 +46,8 @@ pub struct QrStyle {
 
 impl QrStyle {
     pub fn new(
-        color: impl Into<String>,
-        background_color: impl Into<String>,
+        color: impl Into<Cow<'static, str>>,
+        background_color: impl Into<Cow<'static, str>>,
         shape: QrShape,
         width: u32,
         quiet_zone: f64,
@@ -65,8 +65,8 @@ impl QrStyle {
 impl Default for QrStyle {
     fn default() -> Self {
         Self {
-            color: String::from("#000000"),
-            background_color: String::from("#ffffff"),
+            color: Cow::Borrowed("#000000"),
+            background_color: Cow::Borrowed("#ffffff"),
             shape: QrShape::Square,
             width: 720,
             quiet_zone: 2.0,
@@ -121,6 +121,7 @@ impl QrCode {
         let bits = bits::encode_auto(data.as_ref(), ec_level)?;
         Self::with_bits(bits, ec_level)
     }
+
     /// Constructs a new QR code for the given version and error correction
     /// level.
     ///
