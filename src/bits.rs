@@ -277,7 +277,7 @@ mod numeric_tests {
     }
 }
 
-/// Mode::Alphanumeric mode
+////// Mode::Alphanumeric mode
 
 /// In QR code `Mode::Alphanumeric` mode, a pair of alphanumeric characters will
 /// be encoded as a base-45 integer. `alphanumeric_digit` converts each
@@ -366,7 +366,7 @@ mod alphanumeric_tests {
     }
 }
 
-/// Mode::Byte mode
+////// Mode::Byte mode
 
 impl Bits {
     /// Encodes 8-bit byte data to the bits.
@@ -431,7 +431,7 @@ mod byte_tests {
     }
 }
 
-/// Mode::Kanji mode
+////// Mode::Kanji mode
 
 impl Bits {
     /// Encodes Shift JIS double-byte data to the bits.
@@ -670,7 +670,7 @@ impl Bits {
     }
 }
 
-/// Auto version minimization
+////// Auto version minimization
 
 /// Automatically determines the minimum version to store the data, and encode
 /// the result.
@@ -739,7 +739,7 @@ pub enum RmqrStrategy {
     Area,
 }
 
-/// Auto rMQR's version minimization
+////// Auto rMQR's version minimization
 
 /// Automatically determines the minimum version to store the data, and encode
 /// the result.
