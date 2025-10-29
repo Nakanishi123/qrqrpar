@@ -18,3 +18,7 @@ Cargo.lock
 
 #Loacl history
 .history/
+
+# Generated QR code images (test outputs)
+*.png
+*.svg
